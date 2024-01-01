@@ -1,9 +1,10 @@
 import axios from "axios";
+import { useState } from "react";
 
-export function CreateTodo({ todos, setTodos }) {
+export function CreateTodo() {
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
   function postTodo() {
-    const title = document.querySelector("#title").value;
-    const desc = document.querySelector("#description").value;
     const obj = {
       title: title,
       description: desc,
@@ -14,9 +15,21 @@ export function CreateTodo({ todos, setTodos }) {
   }
   return (
     <div>
-      <input type="text" placeholder="title" id="title"></input>
+      <input
+        type="text"
+        placeholder="title"
+        onChange={function (event) {
+          setTitle(event.target.value);
+        }}
+      ></input>
       <br></br>
-      <input type="text" placeholder="description" id="description"></input>
+      <input
+        type="text"
+        placeholder="description"
+        onChange={function (event) {
+          setDesc(event.target.value);
+        }}
+      ></input>
       <br></br>
       <button onClick={postTodo}>Add Todo</button>
     </div>
